@@ -23,7 +23,7 @@ result: {
 }
 ```
 
-2. Construct a un-levered risk parity portfolio based on the volatility of given symbols.
+2. Construct an un-levered risk parity portfolio based on the volatility of given symbols.
 ```javascript
 path: /api/v1/create-portfolio
 {
