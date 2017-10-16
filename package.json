@@ -4,11 +4,12 @@
   "description": "calculate fair value for stocks",
   "main": "dist/index.js",
   "scripts": {
-    "start": "npm run prepublish && node .",
-    "prepublish": ". ./.scripts/prepublish.sh",
+    "start": "npm run prepare && node .",
+    "prepare": ". ./.scripts/prepublish.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Haiyong Zhang",
+  "repository": "https://github.com/Dorgrene/valuation-api.git",
+  "author": "Dorgrene",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
