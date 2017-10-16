@@ -57,7 +57,7 @@ server.route({
 
     _yahooFinance2.default.quote({
       symbol: request.params.symbol,
-      modules: ['price', 'defaultKeyStatistics']
+      modules: ['price', 'defaultKeyStatistics', 'earnings', 'financialData']
     }, function (err, snapshot) {
       if (err) {
         throw new Error(err);
@@ -94,7 +94,7 @@ server.route({
         discount: ((1 - price / fairValue) * 100).toFixed(2) + '%',
         lastYearEarning: lastYearEarning,
         totalDebt: totalDebt,
-        earningToDebt: +(totalDebt / lastYearEarning).toFixed(2)
+        debtToEarning: +(totalDebt / lastYearEarning).toFixed(2)
       });
     });
   }
@@ -108,7 +108,7 @@ server.route({
     var now = new Date();
     var lastYear = new Date();
     lastYear.setFullYear(lastYear.getFullYear() - 1);
-    var symbols = ['fb'];
+    var symbols = request.payload.symbols.replace(/ /g, '').split(/,/);
 
     _yahooFinance2.default.historical({
       symbols: symbols,
