@@ -29,20 +29,25 @@ path: /api/v1/create-portfolio
 {
   METHOD: 'POST'
   data: {
-    symbols: aapl,goog
+    symbols: goog,aapl,
+    totalFundAmount: 10000
   }
 }
 
 result: [
     {
-        "allocation": 0.485,
-        "symbol": "AAPL",
-        "histVolatility": 0.16945
+        "shares": 5,
+        "allocation": 0.516,
+        "symbol": "GOOG",
+        "histVolatility": 0.15951,
+        "adjClose": 992
     },
     {
-        "allocation": 0.515,
-        "symbol": "GOOG",
-        "histVolatility": 0.15951
+        "shares": 30,
+        "allocation": 0.483,
+        "symbol": "AAPL",
+        "histVolatility": 0.17029,
+        "adjClose": 159.88
     }
 ]
 ```

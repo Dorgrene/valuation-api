@@ -124,7 +124,8 @@ server.route({
       var result = _lodash2.default.map(symbols, function (symbol) {
         return {
           symbol: symbol.toUpperCase(),
-          histVolatility: getVolatility(quotes[symbol])
+          histVolatility: getVolatility(quotes[symbol]),
+          adjClose: +quotes[symbol][0].adjClose.toFixed(2)
         };
       });
 
@@ -138,9 +139,17 @@ server.route({
 
       var coefficient = result[0].allocation * result[0].histVolatility;
 
-      reply(_lodash2.default.map(result, function (symbolData) {
+      var resultWithAllocation = _lodash2.default.map(result, function (symbolData) {
         return (0, _assign2.default)({ allocation: +(coefficient / symbolData.histVolatility).toFixed(3) }, symbolData);
-      }));
+      });
+
+      if (request.payload.totalFundAmount) {
+        return reply(_lodash2.default.map(resultWithAllocation, function (symbolData) {
+          return (0, _assign2.default)({ shares: Math.floor(symbolData.allocation * request.payload.totalFundAmount / symbolData.adjClose) }, symbolData);
+        }));
+      }
+
+      return reply(resultWithAllocation);
     });
   }
 });
