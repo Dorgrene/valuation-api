@@ -46,6 +46,9 @@ var getFairValue = function getFairValue(ttmEps, estPe, estGrowthRate) {
 };
 
 server.connection({
+  routes: {
+    cors: true
+  },
   host: 'localhost',
   port: 8000
 });
@@ -94,7 +97,8 @@ server.route({
         discount: ((1 - price / fairValue) * 100).toFixed(2) + '%',
         lastYearEarning: lastYearEarning,
         totalDebt: totalDebt,
-        debtToEarning: +(totalDebt / lastYearEarning).toFixed(2)
+        debtToEarning: +(totalDebt / lastYearEarning).toFixed(2),
+        meta: snapshot
       });
     });
   }
