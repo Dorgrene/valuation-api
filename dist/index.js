@@ -84,7 +84,7 @@ server.route({
       modules: ['price', 'defaultKeyStatistics', 'earnings', 'financialData']
     }, function (err, snapshot) {
       if (err) {
-        return reply(_boom2.default.badRequest('invalid symbol ' + request.payload.symbol));
+        return reply(_boom2.default.badRequest('invalid symbol ' + request.payload.symbol.toUpperCase()));
       }
 
       var price = snapshot.price.regularMarketPrice;
