@@ -16,6 +16,10 @@ var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
+var _boom = require('boom');
+
+var _boom2 = _interopRequireDefault(_boom);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ss = require('simple-statistics');
@@ -80,7 +84,7 @@ server.route({
       modules: ['price', 'defaultKeyStatistics', 'earnings', 'financialData']
     }, function (err, snapshot) {
       if (err) {
-        throw new Error(err);
+        return reply(_boom2.default.badRequest('invalid symbol ' + request.payload.symbol));
       }
 
       var price = snapshot.price.regularMarketPrice;
