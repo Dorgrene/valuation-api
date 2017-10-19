@@ -88,8 +88,12 @@ server.route({
       var forwardPe = snapshot.defaultKeyStatistics.forwardPE;
       var fairValue = getFairValue(eps, snapshot.defaultKeyStatistics.forwardPE, request.payload.growthRate);
       var lastThreeYearEarnings = snapshot.earnings.financialsChart.yearly;
-      var lastYearEarning = lastThreeYearEarnings[lastThreeYearEarnings.length - 1].earnings;
-      var totalDebt = snapshot.financialData.totalDebt;
+      var lastYearEarning = void 0,
+          totalDebt = void 0;
+      if (lastThreeYearEarnings.length > 0) {
+        lastYearEarning = lastThreeYearEarnings[lastThreeYearEarnings.length - 1].earnings;
+        totalDebt = snapshot.financialData.totalDebt;
+      }
 
       return reply({
         price: price,
@@ -97,7 +101,7 @@ server.route({
         discount: ((1 - price / fairValue) * 100).toFixed(2) + '%',
         lastYearEarning: lastYearEarning,
         totalDebt: totalDebt,
-        debtToEarning: +(totalDebt / lastYearEarning).toFixed(2),
+        debtToEarning: !_lodash2.default.isNaN(lastYearEarning) ? +(totalDebt / lastYearEarning).toFixed(2) : null,
         meta: snapshot
       });
     });
