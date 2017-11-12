@@ -25,7 +25,8 @@
     "webpack": "^3.7.1"
   },
   "dependencies": {
-    "hapi": "^16.6.2",
+    "hapi": "^17.0.1",
+    "inert": "^5.0.1",
     "lodash": "^4.17.4",
     "simple-statistics": "^5.0.1",
     "yahoo-finance": "^0.3.3"
