@@ -22,12 +22,12 @@
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
-    "webpack": "^3.10.0"
+    "webpack": "^3.11.0"
   },
   "dependencies": {
     "hapi": "^17.2.0",
-    "inert": "^5.0.1",
-    "lodash": "^4.17.4",
+    "inert": "^5.1.0",
+    "lodash": "^4.17.5",
     "simple-statistics": "^5.2.1",
     "yahoo-finance": "^0.3.5"
   }
